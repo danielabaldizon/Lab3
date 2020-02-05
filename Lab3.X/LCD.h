@@ -11,7 +11,13 @@
 
 #include <xc.h>
 
-void  InitLCD(void);
+void  LCD_Init(void);
+void Lcd_Clear(void);
+void Lcd_Set_Cursor(char a, char b);
+void Lcd_Write_Char(char a);
+void Lcd_Write_String(char *a);
+void Lcd_Shift_Right(void);
+void Lcd_Shift_Left(void);
 
 #endif	/* LCD_H */
 
