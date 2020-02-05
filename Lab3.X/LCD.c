@@ -8,6 +8,21 @@
 #include <pic16f887.h>
 #include "LCD.h"
 #include <stdint.h>
+#include <xc.h>
+
+#define _XTAL_FREQ 4000000
+#define RS RE1 //DEFINIR VARIABLES MÁS SENCILLAS PARA LOS PINES
+#define EN RE0
+#define D0 RA0
+#define D1 RA1
+#define D2 RA2
+#define D3 RA3
+#define D4 RA4
+#define D5 RA5
+#define D6 RA6
+#define D7 RA7
+#define P1 RD0
+#define P2 RD1
 //Referencia del codigo de LCD del repositorio de GitHub https://github.com/pdmazariegos-uvg/ie3027/blob/master/Ejemplos/LCD4Bits.X/LCD.c
 void Lcd_Port(char a) //Revisa bit por bit de a y según el valor de cada bit le asigna 1 o 0 a D
 {

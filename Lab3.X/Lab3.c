@@ -20,11 +20,13 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
+#include <xc.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "LCD.h"
-
+//
 #define _XTAL_FREQ 4000000
+
 #define RS RE1 //DEFINIR VARIABLES MÁS SENCILLAS PARA LOS PINES
 #define EN RE0
 #define D0 RA0
@@ -37,13 +39,14 @@
 #define D7 RA7
 #define P1 RD0
 #define P2 RD1
+ 
 
 
 void main(void){
     unsigned int a;
     TRISD = 0x00;
-    LCD_Init();
-    while(1){
+    Lcd_Init();
+    //while(1){
         
-    }
+ //   }
 }

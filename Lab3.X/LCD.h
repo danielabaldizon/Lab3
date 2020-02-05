@@ -11,7 +11,7 @@
 
 #include <xc.h>
 
-void  LCD_Init(void);
+void Lcd_Init(void);
 void Lcd_Clear(void);
 void Lcd_Set_Cursor(char a, char b);
 void Lcd_Write_Char(char a);
