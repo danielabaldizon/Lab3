@@ -11,8 +11,8 @@
 #include <xc.h>
 
 #define _XTAL_FREQ 4000000
-#define RS RE1 //DEFINIR VARIABLES MÁS SENCILLAS PARA LOS PINES
-#define EN RE0
+#define RS RC1 //DEFINIR VARIABLES MÁS SENCILLAS PARA LOS PINES
+#define EN RC0
 #define D0 RA0
 #define D1 RA1
 #define D2 RA2
@@ -72,8 +72,9 @@ void Lcd_Cmd(char a) //Envía datos a la LCD
 	RS = 0;             // => RS = 0
 	Lcd_Port(a);
 	EN  = 1;             // => E = 1
-    __delay_ms(4);
+    __delay_ms(5);
     EN  = 0;             // => E = 0
+    __delay_ms(1);
 }
 
 void Lcd_Clear(void) //Limpiar la pantalla
@@ -95,18 +96,20 @@ void Lcd_Set_Cursor(char a, char b)// a fila b columna SE MUEVE ENTRE FILAS Y CO
 
 void Lcd_Init(void)
 {
-  Lcd_Port(0x00); //Limpia el puerto de la LCD
-   __delay_ms(20);
-  Lcd_Cmd(0x30); //Envía 0x30
-	__delay_ms(5);
-  Lcd_Cmd(0x30);
-	__delay_ms(11);
-  Lcd_Cmd(0x30);
+  //Lcd_Port(0x00); //Limpia el puerto de la LCD
+   __delay_ms(15);
+  Lcd_Cmd(0x030); //Envía 0x30
+  __delay_ms(5);
+  Lcd_Cmd(0x030);
+  __delay_us(160);
+  Lcd_Cmd(0x030);
   /////////////////////////////////////////////////////
-  Lcd_Cmd(0x38);
-  Lcd_Cmd(0x08);//Visualizador apagado
+  Lcd_Cmd(0x38);//SET LENGTH
+  Lcd_Cmd(0x10);//Visualizador apagado
   Lcd_Cmd(0x01);//Visualizador borrado
   Lcd_Cmd(0x06);//Introducir los caracteres
+  Lcd_Cmd(0x0F);//
+  
 }
 
 void Lcd_Write_Char(char a) //ESCRIBE UN CARACTER EN LA POSICION ACTUAL

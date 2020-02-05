@@ -2646,6 +2646,7 @@ void Lcd_Write_Char(char a);
 void Lcd_Write_String(char *a);
 void Lcd_Shift_Right(void);
 void Lcd_Shift_Left(void);
+void Lcd_Cmd(char a);
 # 9 "LCD.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
@@ -2696,11 +2697,12 @@ void Lcd_Port(char a)
 
 void Lcd_Cmd(char a)
 {
- RE1 = 0;
+ RC1 = 0;
  Lcd_Port(a);
- RE0 = 1;
-    _delay((unsigned long)((4)*(4000000/4000.0)));
-    RE0 = 0;
+ RC0 = 1;
+    _delay((unsigned long)((5)*(4000000/4000.0)));
+    RC0 = 0;
+    _delay((unsigned long)((1)*(4000000/4000.0)));
 }
 
 void Lcd_Clear(void)
@@ -2722,28 +2724,30 @@ void Lcd_Set_Cursor(char a, char b)
 
 void Lcd_Init(void)
 {
-  Lcd_Port(0x00);
-   _delay((unsigned long)((20)*(4000000/4000.0)));
-  Lcd_Cmd(0x30);
- _delay((unsigned long)((5)*(4000000/4000.0)));
-  Lcd_Cmd(0x30);
- _delay((unsigned long)((11)*(4000000/4000.0)));
-  Lcd_Cmd(0x30);
+
+   _delay((unsigned long)((15)*(4000000/4000.0)));
+  Lcd_Cmd(0x030);
+  _delay((unsigned long)((5)*(4000000/4000.0)));
+  Lcd_Cmd(0x030);
+  _delay((unsigned long)((160)*(4000000/4000000.0)));
+  Lcd_Cmd(0x030);
 
   Lcd_Cmd(0x38);
-  Lcd_Cmd(0x08);
+  Lcd_Cmd(0x10);
   Lcd_Cmd(0x01);
   Lcd_Cmd(0x06);
+  Lcd_Cmd(0x0F);
+
 }
 
 void Lcd_Write_Char(char a)
 {
 
-   RE1 = 1;
+   RC1 = 1;
    Lcd_Port(a);
-   RE0 = 1;
+   RC0 = 1;
    _delay((unsigned long)((40)*(4000000/4000000.0)));
-   RE0 = 0;
+   RC0 = 0;
 }
 
 void Lcd_Write_String(char *a)

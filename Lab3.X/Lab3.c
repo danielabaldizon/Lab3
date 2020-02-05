@@ -27,8 +27,8 @@
 //
 #define _XTAL_FREQ 4000000
 
-#define RS RE1 //DEFINIR VARIABLES MÁS SENCILLAS PARA LOS PINES
-#define EN RE0
+#define RS RC1 //DEFINIR VARIABLES MÁS SENCILLAS PARA LOS PINES
+#define EN RC0
 #define D0 RA0
 #define D1 RA1
 #define D2 RA2
@@ -44,9 +44,20 @@
 
 void main(void){
     unsigned int a;
-    TRISD = 0x00;
+    ANSELH = 0;
+    ANSEL = 0;
+    TRISA = 0x00;
+    TRISD = 0x03;
+    TRISC = 0x00;
     Lcd_Init();
-    //while(1){
-        
- //   }
+    
+    while(1){
+        Lcd_Clear();
+        Lcd_Set_Cursor(1,1);
+        Lcd_Write_String("aiuudaaa");
+    Lcd_Set_Cursor(2,1);
+    Lcd_Write_String("DAVIIIIID");
+    __delay_ms(2000);
+    }
+     
 }

@@ -2847,13 +2847,25 @@ void Lcd_Write_Char(char a);
 void Lcd_Write_String(char *a);
 void Lcd_Shift_Right(void);
 void Lcd_Shift_Left(void);
+void Lcd_Cmd(char a);
 # 26 "Lab3.c" 2
 # 45 "Lab3.c"
 void main(void){
     unsigned int a;
-    TRISD = 0x00;
+    ANSELH = 0;
+    ANSEL = 0;
+    TRISA = 0x00;
+    TRISD = 0x03;
+    TRISC = 0x00;
     Lcd_Init();
 
-
+    while(1){
+        Lcd_Clear();
+        Lcd_Set_Cursor(1,1);
+        Lcd_Write_String("aiuudaaa");
+    Lcd_Set_Cursor(2,1);
+    Lcd_Write_String("DAVIIIIID");
+    _delay((unsigned long)((2000)*(4000000/4000.0)));
+    }
 
 }

@@ -1,11 +1,36 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"1602 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+"3449 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 3449: extern volatile unsigned char ANSELH __attribute__((address(0x189)));
+[v _ANSELH `Vuc ~T0 @X0 0 e@393 ]
+"3387
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
+[v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
+"1416
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1416: extern volatile unsigned char TRISA __attribute__((address(0x085)));
+[v _TRISA `Vuc ~T0 @X0 0 e@133 ]
+"1602
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1602: extern volatile unsigned char TRISD __attribute__((address(0x088)));
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
+"1540
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1540: extern volatile unsigned char TRISC __attribute__((address(0x087)));
+[v _TRISC `Vuc ~T0 @X0 0 e@135 ]
 "14 ./LCD.h
 [; ;./LCD.h: 14: void Lcd_Init(void);
 [v _Lcd_Init `(v ~T0 @X0 0 ef ]
+"15
+[; ;./LCD.h: 15: void Lcd_Clear(void);
+[v _Lcd_Clear `(v ~T0 @X0 0 ef ]
+"16
+[; ;./LCD.h: 16: void Lcd_Set_Cursor(char a, char b);
+[v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
+"18
+[; ;./LCD.h: 18: void Lcd_Write_String(char *a);
+[v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
+[v F1256 `(v ~T0 @X0 1 tf1`ul ]
+"92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
+[v __delay `JF1256 ~T0 @X0 0 e ]
+[p i __delay ]
 "8 Lab3.c
 [p x FOSC = INTRC_NOCLKOUT ]
 "9
@@ -275,12 +300,54 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Lab3.c: 46:     unsigned int a;
 [v _a `ui ~T0 @X0 1 a ]
 "47
-[; ;Lab3.c: 47:     TRISD = 0x00;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;Lab3.c: 47:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
 "48
-[; ;Lab3.c: 48:     Lcd_Init();
-[e ( _Lcd_Init ..  ]
+[; ;Lab3.c: 48:     ANSEL = 0;
+[e = _ANSEL -> -> 0 `i `uc ]
+"49
+[; ;Lab3.c: 49:     TRISA = 0x00;
+[e = _TRISA -> -> 0 `i `uc ]
+"50
+[; ;Lab3.c: 50:     TRISD = 0x03;
+[e = _TRISD -> -> 3 `i `uc ]
+"51
+[; ;Lab3.c: 51:     TRISC = 0x00;
+[e = _TRISC -> -> 0 `i `uc ]
 "52
-[; ;Lab3.c: 52: }
+[; ;Lab3.c: 52:     Lcd_Init();
+[e ( _Lcd_Init ..  ]
+"54
+[; ;Lab3.c: 54:     while(1){
+[e :U 145 ]
+{
+"55
+[; ;Lab3.c: 55:         Lcd_Clear();
+[e ( _Lcd_Clear ..  ]
+"56
+[; ;Lab3.c: 56:         Lcd_Set_Cursor(1,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+"57
+[; ;Lab3.c: 57:         Lcd_Write_String("aiuudaaa");
+[e ( _Lcd_Write_String (1 :s 1C ]
+"58
+[; ;Lab3.c: 58:     Lcd_Set_Cursor(2,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"59
+[; ;Lab3.c: 59:     Lcd_Write_String("DAVIIIIID");
+[e ( _Lcd_Write_String (1 :s 2C ]
+"60
+[; ;Lab3.c: 60:     _delay((unsigned long)((2000)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"61
+[; ;Lab3.c: 61:     }
+}
+[e :U 144 ]
+[e $U 145  ]
+[e :U 146 ]
+"63
+[; ;Lab3.c: 63: }
 [e :UE 143 ]
 }
+[a 1C 97 105 117 117 100 97 97 97 0 ]
+[a 2C 68 65 86 73 73 73 73 73 68 0 ]

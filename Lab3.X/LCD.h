@@ -18,6 +18,7 @@ void Lcd_Write_Char(char a);
 void Lcd_Write_String(char *a);
 void Lcd_Shift_Right(void);
 void Lcd_Shift_Left(void);
+void Lcd_Cmd(char a);
 
 #endif	/* LCD_H */
 
