@@ -2700,8 +2700,6 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 extern char * ftoa(float f, int * status);
 # 25 "Lab3.c" 2
 
-# 1 "./LCD.h" 1
-# 10 "./LCD.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
 typedef signed char int8_t;
@@ -2835,6 +2833,11 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
+# 26 "Lab3.c" 2
+
+# 1 "./LCD.h" 1
+# 10 "./LCD.h"
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
 # 10 "./LCD.h" 2
 
 
@@ -2848,24 +2851,81 @@ void Lcd_Write_String(char *a);
 void Lcd_Shift_Right(void);
 void Lcd_Shift_Left(void);
 void Lcd_Cmd(char a);
-# 26 "Lab3.c" 2
+# 27 "Lab3.c" 2
+
+# 1 "./ADC.h" 1
+# 10 "./ADC.h"
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
+# 10 "./ADC.h" 2
+
+
+
+
+void ADC_CONFIG(uint8_t canal, uint8_t justif);
+
+void ADC_INTERRUPT(void);
+
+void ADC_RES(uint8_t AH, uint8_t AL);
+# 28 "Lab3.c" 2
 # 45 "Lab3.c"
+uint8_t adc1 = 0;
+uint8_t adc2 = 0;
+uint8_t ctrl = 0;
+uint8_t ctrl2 = 0;
+float adc11;
+float adc22;
+
+
 void main(void){
     unsigned int a;
     ANSELH = 0;
     ANSEL = 0;
     TRISA = 0x00;
-    TRISD = 0x03;
+    TRISB = 0x00;
     TRISC = 0x00;
+
+
+    ADC_CONFIG(12,0);
+    ADC_CONFIG(10,0);
+
     Lcd_Init();
 
+
+    char s1[7];
+    char s2[7];
+
+
+
     while(1){
+        ADCON0bits.CHS = 10;
+        _delay((unsigned long)((500)*(4000000/4000000.0)));
+        ADCON0bits.GO = 1;
+        while(ADCON0bits.GO == 1){};
+        adc1 = ADRESH;
+        adc11 = adc1/51.0;
+        PIR1bits.ADIF = 0;
+        ADCON0bits.CHS = 12;
+        _delay((unsigned long)((500)*(4000000/4000000.0)));
+        ADCON0bits.GO = 1;
+        while(ADCON0bits.GO == 1){};
+        adc2 = ADRESH;
+        adc22 = adc2/51.0;
+        PIR1bits.ADIF = 0;
         Lcd_Clear();
-        Lcd_Set_Cursor(1,1);
-        Lcd_Write_String("aiuudaaa");
-    Lcd_Set_Cursor(2,1);
-    Lcd_Write_String("DAVIIIIID");
-    _delay((unsigned long)((2000)*(4000000/4000.0)));
+        Lcd_Set_Cursor(1,2);
+        Lcd_Write_String("P1:");
+        Lcd_Set_Cursor(1,7);
+        Lcd_Write_String("P2:");
+        Lcd_Set_Cursor(1,12);
+        Lcd_Write_String("P3:");
+
+        sprintf(s1,"%.2f",adc11);
+        Lcd_Set_Cursor(2,1);
+        Lcd_Write_String(s1);
+        sprintf(s2,"%.2f",adc22);
+        Lcd_Set_Cursor(2,6);
+        Lcd_Write_String(s2);
+        _delay((unsigned long)((2000)*(4000000/4000.0)));
     }
 
 }
