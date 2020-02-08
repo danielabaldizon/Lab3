@@ -48,6 +48,10 @@ uint8_t ctrl = 0;
 uint8_t ctrl2 = 0;
 float adc11;
 float adc22;
+char int_stre(float n);
+char int_strd(float n);
+char int_strc(float n);
+char num_case(uint8_t num);
 
 
 void main(void){
@@ -65,8 +69,8 @@ void main(void){
     Lcd_Init();
     
     // VARIABLES
-    char s1[7];
-    char s2[7];
+    char s1[5] = "";
+    char s2[5] = "";
     
     
     
@@ -85,20 +89,120 @@ void main(void){
         adc2 = ADRESH;
         adc22 = adc2/51.0;
         PIR1bits.ADIF = 0;
-        Lcd_Clear();
         Lcd_Set_Cursor(1,2);
         Lcd_Write_String("P1:");
         Lcd_Set_Cursor(1,7);
         Lcd_Write_String("P2:");
         Lcd_Set_Cursor(1,12);
         Lcd_Write_String("P3:");
-        sprintf(s1,"%.2f",adc11);
         Lcd_Set_Cursor(2,1);
+        s1[0] = int_stre(adc11);
+        s1[1]='.';
+        s1[2] = int_strd(adc11);
+        s1[3] = int_strc(adc11);
         Lcd_Write_String(s1);
-        sprintf(s2,"%.2f",adc22);
         Lcd_Set_Cursor(2,6);
+        s2[0] = int_stre(adc22);
+        s2[1]='.';
+        s2[2] = int_strd(adc22);
+        s2[3] = int_strc(adc22);
         Lcd_Write_String(s2);
         __delay_ms(2000);
     }
      
+}
+char int_stre(float n){
+    uint8_t e;
+    uint8_t d;
+    uint8_t c;
+    uint8_t loca;
+    char c1;
+    char c2;
+    char c3;
+    
+    e = n;
+    c1 = num_case(e);
+    loca = (n - e)*10;
+    d = loca;
+    c2 = num_case(d);
+    loca = (loca-d)*10;
+    c = loca;
+    c3 = num_case(c);
+    return c1;
+}
+
+char int_strd(float n){
+    uint8_t e;
+    uint8_t d;
+    uint8_t c;
+    uint8_t loca;
+    char c1;
+    char c2;
+    char c3;
+    
+    e = n;
+    c1 = num_case(e);
+    loca = (n - e)*10;
+    d = loca;
+    c2 = num_case(d);
+    loca = (loca-d)*10;
+    c = loca;
+    c3 = num_case(c);
+    return c2;
+}
+char int_strc(float n){
+    uint8_t e;
+    uint8_t d;
+    uint8_t c;
+    float loca;
+    char c1;
+    char c2;
+    char c3;
+    
+    e = n;
+    c1 = num_case(e);
+    loca = (n - e)*10;
+    d = loca;
+    c2 = num_case(d);
+    loca = (loca-d)*10;
+    c = loca;
+    c3 = num_case(c);
+    return c3;
+}
+
+char num_case(uint8_t num){
+    char r;
+    switch(num){
+        case 0:
+            r = '0';
+            break;
+        case 1:
+            r = '1';
+            break;
+        case 2:
+            r = '2';
+            break;
+        case 3:
+            r = '3';
+            break;
+        case 4:
+            r = '4';
+            break;
+        case 5:
+            r = '5';
+            break;
+        case 6:
+            r = '6';
+            break;
+        case 7:
+            r = '7';
+            break;
+        case 8:
+            r = '8';
+            break;
+        case 9:
+            r = '9';
+            break;
+    }
+    return r;
 }
