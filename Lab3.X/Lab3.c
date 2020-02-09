@@ -26,6 +26,7 @@
 #include <stdint.h>
 #include "LCD.h"
 #include "ADC.h"
+#include "RXTX.h"
 //
 #define _XTAL_FREQ 4000000
 
@@ -67,6 +68,7 @@ void main(void){
     ADC_CONFIG(10,0); //CANAL 10 JUSTIFICACION A LA IZQUIERDA
     
     Lcd_Init();
+    UART_Init(9600);
     
     // VARIABLES
     char s1[5] = "";
@@ -89,6 +91,8 @@ void main(void){
         adc2 = ADRESH;
         adc22 = adc2/51.0;
         PIR1bits.ADIF = 0;
+        
+        /////
         Lcd_Set_Cursor(1,2);
         Lcd_Write_String("P1:");
         Lcd_Set_Cursor(1,7);
@@ -108,6 +112,10 @@ void main(void){
         s2[3] = int_strc(adc22);
         Lcd_Write_String(s2);
         __delay_ms(2000);
+        
+        ///
+        UART_Write(adc11);
+        UART_Write(adc2);
     }
      
 }
