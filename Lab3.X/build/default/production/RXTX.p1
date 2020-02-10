@@ -33,6 +33,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
 [v __delay `JF1409 ~T0 @X0 0 e ]
 [p i __delay ]
+"4175 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 4175: extern volatile __bit RCIF __attribute__((address(0x65)));
+[v _RCIF `Vb ~T0 @X0 0 e@101 ]
+"1140
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
+[v _RCREG `Vuc ~T0 @X0 0 e@26 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -390,4 +396,79 @@ Version 4.0 HI-TECH Software Intermediate Code
 "47
 [; ;RXTX.c: 47: }
 [e :UE 149 ]
+}
+"49
+[; ;RXTX.c: 49: char UART_Data_Ready()
+[v _UART_Data_Ready `(uc ~T0 @X0 1 ef ]
+"50
+[; ;RXTX.c: 50: {
+{
+[e :U _UART_Data_Ready ]
+[f ]
+"51
+[; ;RXTX.c: 51:   return RCIF;
+[e ) -> _RCIF `uc ]
+[e $UE 150  ]
+"52
+[; ;RXTX.c: 52: }
+[e :UE 150 ]
+}
+"54
+[; ;RXTX.c: 54: char UART_Read()
+[v _UART_Read `(uc ~T0 @X0 1 ef ]
+"55
+[; ;RXTX.c: 55: {
+{
+[e :U _UART_Read ]
+[f ]
+"56
+[; ;RXTX.c: 56:   while(!RCIF);
+[e $U 152  ]
+[e :U 153 ]
+[e :U 152 ]
+[e $ ! _RCIF 153  ]
+[e :U 154 ]
+"57
+[; ;RXTX.c: 57:   return RCREG;
+[e ) -> _RCREG `uc ]
+[e $UE 151  ]
+"58
+[; ;RXTX.c: 58: }
+[e :UE 151 ]
+}
+"60
+[; ;RXTX.c: 60: void UART_Read_Text(char *Output, unsigned int length)
+[v _UART_Read_Text `(v ~T0 @X0 1 ef2`*uc`ui ]
+"61
+[; ;RXTX.c: 61: {
+{
+[e :U _UART_Read_Text ]
+"60
+[; ;RXTX.c: 60: void UART_Read_Text(char *Output, unsigned int length)
+[v _Output `*uc ~T0 @X0 1 r1 ]
+[v _length `ui ~T0 @X0 1 r2 ]
+"61
+[; ;RXTX.c: 61: {
+[f ]
+"62
+[; ;RXTX.c: 62:   unsigned int i;
+[v _i `ui ~T0 @X0 1 a ]
+"63
+[; ;RXTX.c: 63:   for(int i=0;i<length;i++)
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 159  ]
+[e :U 156 ]
+"64
+[; ;RXTX.c: 64:   Output[i] = UART_Read();
+[e = *U + _Output * -> _i `x -> -> # *U _Output `i `x ( _UART_Read ..  ]
+[e ++ _i -> 1 `i ]
+[e :U 159 ]
+[e $ < -> _i `ui _length 156  ]
+[e :U 157 ]
+}
+"65
+[; ;RXTX.c: 65: }
+[e :UE 155 ]
 }

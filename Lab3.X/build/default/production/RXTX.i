@@ -2745,6 +2745,9 @@ extern __bank0 __bit __timeout;
 char UART_Init(const long int baudrate);
 void UART_Write(char data);
 char UART_TX_Empty();
+char UART_Data_Ready();
+char UART_Read();
+void UART_Read_Text(char *Output, unsigned int length);
 # 10 "RXTX.c" 2
 
 
@@ -2783,4 +2786,22 @@ void UART_Write(char data)
 char UART_TX_Empty()
 {
   return TRMT;
+}
+
+char UART_Data_Ready()
+{
+  return RCIF;
+}
+
+char UART_Read()
+{
+  while(!RCIF);
+  return RCREG;
+}
+
+void UART_Read_Text(char *Output, unsigned int length)
+{
+  unsigned int i;
+  for(int i=0;i<length;i++)
+  Output[i] = UART_Read();
 }

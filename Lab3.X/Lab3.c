@@ -45,14 +45,18 @@
 
 uint8_t adc1 = 0;
 uint8_t adc2 = 0;
-uint8_t ctrl = 0;
-uint8_t ctrl2 = 0;
+uint8_t cont = 123;
+char entrada;
 float adc11;
 float adc22;
+float contm;
 char int_stre(float n);
 char int_strd(float n);
 char int_strc(float n);
 char num_case(uint8_t num);
+char b2(float m);
+char b0(float m);
+char b1(float m);
 
 
 void main(void){
@@ -73,6 +77,7 @@ void main(void){
     // VARIABLES
     char s1[5] = "";
     char s2[5] = "";
+    char s3[4] = "";
     
     
     
@@ -111,11 +116,28 @@ void main(void){
         s2[2] = int_strd(adc22);
         s2[3] = int_strc(adc22);
         Lcd_Write_String(s2);
-        __delay_ms(2000);
+        /*Lcd_Set_Cursor(2,11);
+        s3[2] = b0(cont);
+        s3[1] = b1(cont);
+        s3[0] = b2(cont);
+        Lcd_Write_String(s3);
+        / while(UART_Data_Ready())
+      //  entrada = UART_Read();
+        UART_Read_Text(entrada, 8);
+        Lcd_Set_Cursor(2,1);
+        Lcd_Write_String(entrada);*/
+        __delay_ms(500);
+        
         
         ///
-        UART_Write(adc11);
+        UART_Write(adc1);
         UART_Write(adc2);
+        
+        //
+        
+        __delay_ms(100);
+        
+        
     }
      
 }
@@ -176,6 +198,44 @@ char int_strc(float n){
     c = loca;
     c3 = num_case(c);
     return c3;
+}
+
+char b2(float m){
+    uint8_t bb2;
+    float local;
+    char p2;
+    
+    bb2 = m/100;
+    p2 = num_case(bb2);
+    return p2;
+}
+
+char b1(float m){
+    uint8_t bb2;
+    uint8_t bb1;
+    uint8_t local;
+    char p1;
+    
+    bb2 = m/100;
+    local = m-bb2*100;
+    bb1 = local/10;
+    p1 = num_case(bb1);
+    return p1;
+}
+
+char b0(float m){
+    uint8_t bb2;
+    uint8_t bb1;
+    uint8_t bb0;
+    uint8_t local;
+    char p0;
+    
+    bb2 = m/100;
+    local = m-bb2*100;
+    bb1 = local/10;
+    bb0 = local-bb1*10;
+    p0 = num_case(bb0);
+    return p0;
 }
 
 char num_case(uint8_t num){

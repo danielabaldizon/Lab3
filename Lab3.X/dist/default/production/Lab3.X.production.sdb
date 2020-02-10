@@ -7,6 +7,8 @@
 [v _ADC_CONFIG ADC_CONFIG `(v  1 e 1 0 ]
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\aldiv.c
 [v ___aldiv __aldiv `(l  1 e 4 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
 "43 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\fltol.c
 [v ___fltol __fltol `(l  1 e 4 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcadd.c
@@ -17,6 +19,8 @@
 [v ___fldiv __fldiv `(d  1 e 4 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8_16.c
@@ -27,15 +31,15 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"58 C:\Users\Daniela Baldizon\Documents\GitHub\Lab3\Lab3\Lab3\Lab3.X\Lab3.c
+"62 C:\Users\Daniela Baldizon\Documents\GitHub\Lab3\Lab3\Lab3\Lab3.X\Lab3.c
 [v _main main `(v  1 e 1 0 ]
-"122
+"144
 [v _int_stre int_stre `(uc  1 e 1 0 ]
-"142
+"164
 [v _int_strd int_strd `(uc  1 e 1 0 ]
-"161
+"183
 [v _int_strc int_strc `(uc  1 e 1 0 ]
-"181
+"241
 [v _num_case num_case `(uc  1 e 1 0 ]
 "27 C:\Users\Daniela Baldizon\Documents\GitHub\Lab3\Lab3\Lab3\Lab3.X\LCD.c
 [v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
@@ -53,6 +57,8 @@
 [v _UART_Init UART_Init `(uc  1 e 1 0 ]
 "37
 [v _UART_Write UART_Write `(v  1 e 1 0 ]
+"54
+[v _UART_Read UART_Read `(uc  1 e 1 0 ]
 [s S249 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
@@ -83,6 +89,8 @@
 [v _PIR1bits PIR1bits `VES219  1 e 1 @12 ]
 "1133
 [v _TXREG TXREG `VEuc  1 e 1 @25 ]
+"1140
+[v _RCREG RCREG `VEuc  1 e 1 @26 ]
 "1238
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
 [s S57 . 1 `uc 1 ADON 1 0 :1:0 
@@ -220,6 +228,8 @@
 [v _RC0 RC0 `VEb  1 e 0 @56 ]
 "4136
 [v _RC1 RC1 `VEb  1 e 0 @57 ]
+"4175
+[v _RCIF RCIF `VEb  1 e 0 @101 ]
 "4259
 [v _SPEN SPEN `VEb  1 e 0 @199 ]
 "4313
@@ -240,48 +250,50 @@
 [v _adc11 adc11 `f  1 e 4 0 ]
 "51
 [v _adc22 adc22 `f  1 e 4 0 ]
-"58
+"62
 [v _main main `(v  1 e 1 0 ]
 {
-"75
-[v main@s2 s2 `[5]uc  1 a 5 5 ]
-"74
-[v main@s1 s1 `[5]uc  1 a 5 0 ]
-"121
+"79
+[v main@s2 s2 `[5]uc  1 a 5 9 ]
+"78
+[v main@s1 s1 `[5]uc  1 a 5 4 ]
+"80
+[v main@s3 s3 `[4]uc  1 a 4 0 ]
+"143
 } 0
-"122
+"144
 [v _int_stre int_stre `(uc  1 e 1 0 ]
 {
-"126
+"148
 [v int_stre@loca loca `uc  1 a 1 68 ]
-"124
+"146
 [v int_stre@d d `uc  1 a 1 67 ]
-"123
+"145
 [v int_stre@e e `uc  1 a 1 66 ]
-"127
+"149
 [v int_stre@c1 c1 `uc  1 a 1 65 ]
-"125
+"147
 [v int_stre@c c `uc  1 a 1 64 ]
-"122
+"144
 [v int_stre@n n `f  1 p 4 53 ]
-"140
+"162
 } 0
-"142
+"164
 [v _int_strd int_strd `(uc  1 e 1 0 ]
 {
-"146
+"168
 [v int_strd@loca loca `uc  1 a 1 68 ]
-"144
+"166
 [v int_strd@d d `uc  1 a 1 67 ]
-"143
+"165
 [v int_strd@e e `uc  1 a 1 66 ]
-"148
+"170
 [v int_strd@c2 c2 `uc  1 a 1 65 ]
-"145
+"167
 [v int_strd@c c `uc  1 a 1 64 ]
-"142
+"164
 [v int_strd@n n `f  1 p 4 53 ]
-"160
+"182
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
@@ -296,33 +308,33 @@
 [v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
 "51
 } 0
-"161 C:\Users\Daniela Baldizon\Documents\GitHub\Lab3\Lab3\Lab3\Lab3.X\Lab3.c
+"183 C:\Users\Daniela Baldizon\Documents\GitHub\Lab3\Lab3\Lab3\Lab3.X\Lab3.c
 [v _int_strc int_strc `(uc  1 e 1 0 ]
 {
-"165
+"187
 [v int_strc@loca loca `f  1 a 4 67 ]
-"163
+"185
 [v int_strc@d d `uc  1 a 1 66 ]
-"162
+"184
 [v int_strc@e e `uc  1 a 1 65 ]
-"168
+"190
 [v int_strc@c3 c3 `uc  1 a 1 64 ]
-"164
+"186
 [v int_strc@c c `uc  1 a 1 63 ]
-"161
+"183
 [v int_strc@n n `f  1 p 4 53 ]
-"179
+"201
 } 0
-"181
+"241
 [v _num_case num_case `(uc  1 e 1 0 ]
 {
 [v num_case@num num `uc  1 a 1 wreg ]
-"182
+"242
 [v num_case@r r `uc  1 a 1 3 ]
-"181
+"241
 [v num_case@num num `uc  1 a 1 wreg ]
 [v num_case@num num `uc  1 a 1 2 ]
-"216
+"276
 } 0
 "10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -375,17 +387,17 @@
 "8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S785 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S816 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S790 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S793 . 4 `l 1 i 4 0 `d 1 f 4 0 `S785 1 fAsBytes 4 0 `S790 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S793  1 a 4 36 ]
+[s S821 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S824 . 4 `l 1 i 4 0 `d 1 f 4 0 `S816 1 fAsBytes 4 0 `S821 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S824  1 a 4 36 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 30 ]
-[s S862 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S893 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S865 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S862 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S865  1 a 2 40 ]
+[u S896 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S893 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S896  1 a 2 40 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 35 ]
 "11

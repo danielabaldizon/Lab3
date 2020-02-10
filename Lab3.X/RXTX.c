@@ -45,3 +45,21 @@ char UART_TX_Empty()
 {
   return TRMT;
 }
+
+char UART_Data_Ready()
+{
+  return RCIF;
+}
+
+char UART_Read()
+{
+  while(!RCIF);
+  return RCREG;
+}
+
+void UART_Read_Text(char *Output, unsigned int length)
+{
+  unsigned int i;
+  for(int i=0;i<length;i++)
+  Output[i] = UART_Read();
+}
