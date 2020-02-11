@@ -422,53 +422,53 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _UART_Read ]
 [f ]
 "56
-[; ;RXTX.c: 56:   while(!RCIF);
+[; ;RXTX.c: 56:     return RCREG;
+[e ) -> _RCREG `uc ]
+[e $UE 151  ]
+"57
+[; ;RXTX.c: 57:   while(!RCIF);
 [e $U 152  ]
 [e :U 153 ]
 [e :U 152 ]
 [e $ ! _RCIF 153  ]
 [e :U 154 ]
-"57
-[; ;RXTX.c: 57:   return RCREG;
-[e ) -> _RCREG `uc ]
-[e $UE 151  ]
-"58
-[; ;RXTX.c: 58: }
+"59
+[; ;RXTX.c: 59: }
 [e :UE 151 ]
 }
-"60
-[; ;RXTX.c: 60: void UART_Read_Text(char *Output, unsigned int length)
-[v _UART_Read_Text `(v ~T0 @X0 1 ef2`*uc`ui ]
 "61
-[; ;RXTX.c: 61: {
+[; ;RXTX.c: 61: void UART_Read_Text(char *Output, unsigned int length)
+[v _UART_Read_Text `(v ~T0 @X0 1 ef2`*uc`ui ]
+"62
+[; ;RXTX.c: 62: {
 {
 [e :U _UART_Read_Text ]
-"60
-[; ;RXTX.c: 60: void UART_Read_Text(char *Output, unsigned int length)
+"61
+[; ;RXTX.c: 61: void UART_Read_Text(char *Output, unsigned int length)
 [v _Output `*uc ~T0 @X0 1 r1 ]
 [v _length `ui ~T0 @X0 1 r2 ]
-"61
-[; ;RXTX.c: 61: {
-[f ]
 "62
-[; ;RXTX.c: 62:   unsigned int i;
-[v _i `ui ~T0 @X0 1 a ]
+[; ;RXTX.c: 62: {
+[f ]
 "63
-[; ;RXTX.c: 63:   for(int i=0;i<length;i++)
+[; ;RXTX.c: 63:   unsigned int i;
+[v _i `ui ~T0 @X0 1 a ]
+"64
+[; ;RXTX.c: 64:   for(int i=0;i<length;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 159  ]
 [e :U 156 ]
-"64
-[; ;RXTX.c: 64:   Output[i] = UART_Read();
+"65
+[; ;RXTX.c: 65:   Output[i] = UART_Read();
 [e = *U + _Output * -> _i `x -> -> # *U _Output `i `x ( _UART_Read ..  ]
 [e ++ _i -> 1 `i ]
 [e :U 159 ]
 [e $ < -> _i `ui _length 156  ]
 [e :U 157 ]
 }
-"65
-[; ;RXTX.c: 65: }
+"66
+[; ;RXTX.c: 66: }
 [e :UE 155 ]
 }

@@ -2885,8 +2885,8 @@ void UART_Read_Text(char *Output, unsigned int length);
 # 46 "Lab3.c"
 uint8_t adc1 = 0;
 uint8_t adc2 = 0;
-uint8_t cont = 123;
-char entrada;
+uint8_t cont = 0;
+char entrada = 43;
 float adc11;
 float adc22;
 float contm;
@@ -2897,6 +2897,8 @@ char num_case(uint8_t num);
 char b2(float m);
 char b0(float m);
 char b1(float m);
+
+
 
 
 void main(void){
@@ -2956,18 +2958,41 @@ void main(void){
         s2[2] = int_strd(adc22);
         s2[3] = int_strc(adc22);
         Lcd_Write_String(s2);
-# 129 "Lab3.c"
+        Lcd_Set_Cursor(2,11);
+        s3[2] = b0(cont);
+        s3[1] = b1(cont);
+        s3[0] = b2(cont);
+        Lcd_Write_String(s3);
+
+
+
+
+
         _delay((unsigned long)((500)*(4000000/4000.0)));
 
 
 
         UART_Write(adc1);
         UART_Write(adc2);
+        entrada = UART_Read()-'0';
 
 
 
-        _delay((unsigned long)((100)*(4000000/4000.0)));
+        if (entrada == 43){
+                cont++;
+            }
+        else if(entrada == 45){
+            cont--;
+        }else{
+            cont=cont;
+        }
 
+        if (cont>255){
+            cont = 0;
+        }
+        else if(cont<0){
+            cont = 255;
+        }
 
     }
 

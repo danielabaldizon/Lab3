@@ -531,8 +531,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;LCD.c: 110:   Lcd_Cmd(0x06);
 [e ( _Lcd_Cmd (1 -> -> 6 `i `uc ]
 "111
-[; ;LCD.c: 111:   Lcd_Cmd(0x0F);
-[e ( _Lcd_Cmd (1 -> -> 15 `i `uc ]
+[; ;LCD.c: 111:   Lcd_Cmd(0x0C);
+[e ( _Lcd_Cmd (1 -> -> 12 `i `uc ]
 "113
 [; ;LCD.c: 113: }
 [e :UE 161 ]
@@ -560,8 +560,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;LCD.c: 120:    RC0 = 1;
 [e = _RC0 -> -> 1 `i `b ]
 "121
-[; ;LCD.c: 121:    _delay((unsigned long)((40)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+[; ;LCD.c: 121:    _delay((unsigned long)((100)*(4000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
 "122
 [; ;LCD.c: 122:    RC0 = 0;
 [e = _RC0 -> -> 0 `i `b ]

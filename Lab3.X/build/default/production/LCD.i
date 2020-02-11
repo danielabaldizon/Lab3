@@ -2736,7 +2736,7 @@ void Lcd_Init(void)
   Lcd_Cmd(0x10);
   Lcd_Cmd(0x01);
   Lcd_Cmd(0x06);
-  Lcd_Cmd(0x0F);
+  Lcd_Cmd(0x0C);
 
 }
 
@@ -2746,7 +2746,7 @@ void Lcd_Write_Char(char a)
    RC1 = 1;
    Lcd_Port(a);
    RC0 = 1;
-   _delay((unsigned long)((40)*(4000000/4000000.0)));
+   _delay((unsigned long)((100)*(4000000/4000000.0)));
    RC0 = 0;
 }
 

@@ -2795,8 +2795,9 @@ char UART_Data_Ready()
 
 char UART_Read()
 {
+    return RCREG;
   while(!RCIF);
-  return RCREG;
+
 }
 
 void UART_Read_Text(char *Output, unsigned int length)

@@ -108,7 +108,7 @@ void Lcd_Init(void)
   Lcd_Cmd(0x10);//Visualizador apagado
   Lcd_Cmd(0x01);//Visualizador borrado
   Lcd_Cmd(0x06);//Introducir los caracteres
-  Lcd_Cmd(0x0F);//
+  Lcd_Cmd(0x0C);//
   
 }
 
@@ -118,7 +118,7 @@ void Lcd_Write_Char(char a) //ESCRIBE UN CARACTER EN LA POSICION ACTUAL
    RS = 1;             // => RS = 1 LOS D SON DATOS
    Lcd_Port(a);             //Data transfer
    EN = 1;
-   __delay_us(40);
+   __delay_us(100);
    EN = 0;
 }
 

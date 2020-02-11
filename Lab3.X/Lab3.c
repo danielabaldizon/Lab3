@@ -45,8 +45,8 @@
 
 uint8_t adc1 = 0;
 uint8_t adc2 = 0;
-uint8_t cont = 123;
-char entrada;
+uint8_t cont = 0;
+char entrada = 43;
 float adc11;
 float adc22;
 float contm;
@@ -57,6 +57,8 @@ char num_case(uint8_t num);
 char b2(float m);
 char b0(float m);
 char b1(float m);
+
+
 
 
 void main(void){
@@ -86,9 +88,9 @@ void main(void){
         __delay_us(500);
         ADCON0bits.GO = 1;      //INICIA EL ADC
         while(ADCON0bits.GO == 1){};
-        adc1 = ADRESH;
-        adc11 = adc1/51.0;
-        PIR1bits.ADIF = 0;
+        adc1 = ADRESH; // guarda en la variable el valor del adres
+        adc11 = adc1/51.0; // conversion de 0 a 5
+        PIR1bits.ADIF = 0; // limpia la bandera
         ADCON0bits.CHS = 12;    //CANAL 12
         __delay_us(500);
         ADCON0bits.GO = 1;      //INICIA EL ADC
@@ -98,17 +100,17 @@ void main(void){
         PIR1bits.ADIF = 0;
         
         /////
-        Lcd_Set_Cursor(1,2);
-        Lcd_Write_String("P1:");
-        Lcd_Set_Cursor(1,7);
-        Lcd_Write_String("P2:");
+        Lcd_Set_Cursor(1,2); //posicionar cursor
+        Lcd_Write_String("P1:"); //escribir
+        Lcd_Set_Cursor(1,7); //posicionar cursor
+        Lcd_Write_String("P2:"); // escribir
         Lcd_Set_Cursor(1,12);
         Lcd_Write_String("P3:");
         Lcd_Set_Cursor(2,1);
-        s1[0] = int_stre(adc11);
-        s1[1]='.';
-        s1[2] = int_strd(adc11);
-        s1[3] = int_strc(adc11);
+        s1[0] = int_stre(adc11);// llama a l funcion que agarra el entero y lo pasa a string
+        s1[1]='.'; // mete a la cadena el punto
+        s1[2] = int_strd(adc11); //mete a la cadena la decima
+        s1[3] = int_strc(adc11); //mete a la cadena la centesima
         Lcd_Write_String(s1);
         Lcd_Set_Cursor(2,6);
         s2[0] = int_stre(adc22);
@@ -116,32 +118,46 @@ void main(void){
         s2[2] = int_strd(adc22);
         s2[3] = int_strc(adc22);
         Lcd_Write_String(s2);
-        /*Lcd_Set_Cursor(2,11);
+        Lcd_Set_Cursor(2,11);
         s3[2] = b0(cont);
         s3[1] = b1(cont);
         s3[0] = b2(cont);
         Lcd_Write_String(s3);
-        / while(UART_Data_Ready())
+        //while(UART_Data_Ready())
       //  entrada = UART_Read();
-        UART_Read_Text(entrada, 8);
-        Lcd_Set_Cursor(2,1);
-        Lcd_Write_String(entrada);*/
+        /*UART_Read_Text(entrada, 8);*/
+       // Lcd_Set_Cursor(2,1);
+      //  Lcd_Write_Char(cont);
         __delay_ms(500);
         
         
         ///
-        UART_Write(adc1);
+        UART_Write(adc1);//escribir en tx los valores del adres
         UART_Write(adc2);
-        
+        entrada = UART_Read()-'0';
         //
         
-        __delay_ms(100);
+ 
+        if (entrada == 43){//+
+                cont++;
+            }
+        else if(entrada == 45){//-
+            cont--;
+        }else{
+            cont=cont;
+        }
         
+        if (cont>255){ //para que no pase de 255
+            cont = 0;
+        }
+        else if(cont<0){ //no baje de 0
+            cont = 255;
+        }
         
     }
      
 }
-char int_stre(float n){
+char int_stre(float n){ //funcion para solo tomar el entero y pasarlo a string
     uint8_t e;
     uint8_t d;
     uint8_t c;
@@ -157,11 +173,11 @@ char int_stre(float n){
     c2 = num_case(d);
     loca = (loca-d)*10;
     c = loca;
-    c3 = num_case(c);
+    c3 = num_case(c); // va buscar el string del numero
     return c1;
 }
 
-char int_strd(float n){
+char int_strd(float n){ // funcion para solo tomar la decima y pasarlo a string
     uint8_t e;
     uint8_t d;
     uint8_t c;
@@ -177,10 +193,10 @@ char int_strd(float n){
     c2 = num_case(d);
     loca = (loca-d)*10;
     c = loca;
-    c3 = num_case(c);
+    c3 = num_case(c); //busca el string del numero 
     return c2;
 }
-char int_strc(float n){
+char int_strc(float n){ // pasar la centesima a string
     uint8_t e;
     uint8_t d;
     uint8_t c;
@@ -200,7 +216,7 @@ char int_strc(float n){
     return c3;
 }
 
-char b2(float m){
+char b2(float m){ //hacer el contador, pasar el "bit 2" a string
     uint8_t bb2;
     float local;
     char p2;
@@ -210,7 +226,7 @@ char b2(float m){
     return p2;
 }
 
-char b1(float m){
+char b1(float m){// pasar el "bit 1" a string
     uint8_t bb2;
     uint8_t bb1;
     uint8_t local;
@@ -223,7 +239,7 @@ char b1(float m){
     return p1;
 }
 
-char b0(float m){
+char b0(float m){ //pasar el "bit0" a string
     uint8_t bb2;
     uint8_t bb1;
     uint8_t bb0;
@@ -238,7 +254,7 @@ char b0(float m){
     return p0;
 }
 
-char num_case(uint8_t num){
+char num_case(uint8_t num){ //funcion que pasa un numero a string
     char r;
     switch(num){
         case 0:
